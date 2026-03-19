@@ -1,0 +1,53 @@
+import { Navbar } from "@/components/layout/Navbar"
+import { Hero } from "@/components/home/Hero"
+import { FinalCTA } from "@/components/home/FinalCTA";
+import { FeatureBentoGrid } from "@/components/app-ui/FeatureBentoGrid"
+import { CarouselSection } from "@/components/home/CarouselSection"
+import { Footer } from "@/components/layout/Footer"
+import { ScrollReveal } from "@/components/ui/ScrollReveal"
+import { FeatureShowcase } from "@/components/home/FeatureShowcase";
+export default function Home() {
+  return (
+    <main className="min-h-screen relative overflow-x-hidden flex flex-col">
+      {/* Subtle star-like dots background */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.02] z-0"
+        style={{
+          backgroundImage: `radial-gradient(circle at center, white 1px, transparent 1.5px)`,
+          backgroundSize: '40px 40px'
+        }}
+      />
+
+      <Navbar />
+
+      {/* First Viewport Section: Hero */}
+      <div className="flex flex-col items-center justify-center min-h-screen pt-20 w-full relative overflow-hidden z-10">
+        <Hero />
+      </div>
+
+      {/* Deep-space gradient wrapper for remaining sections */}
+      <div className="w-full relative z-10 bg-gradient-to-b from-[#030303] via-[#0b031a] to-[#030303]">
+        {/* Second Viewport Section: App UI & Portal */}
+        <ScrollReveal className="flex flex-col items-center w-full relative z-10">
+          {/* Container to handle the overlap gracefully */}
+          <div className="w-full px-6 flex justify-center mt-[-100px] mb-32 z-20 max-w-[1200px] mx-auto">
+            <FeatureBentoGrid />
+          </div>
+        </ScrollReveal>
+
+        {/* Third Section: Looping Image Carousel */}
+        <ScrollReveal className="w-full relative z-10">
+          <CarouselSection />
+          <FeatureShowcase />
+
+        </ScrollReveal>
+
+        <div className="w-full relative z-10">
+          <FinalCTA />
+        </div>
+
+        <Footer />
+      </div>
+    </main>
+  );
+}
