@@ -96,9 +96,9 @@ export function AuraShowcase() {
               isGridLockedRef.current = true;
             }
           },
-          onComplete: () => {
-            isGridLockedRef.current = true;
-          },
+        },
+        onComplete: () => {
+          isGridLockedRef.current = true;
         },
       });
 

@@ -9,7 +9,18 @@ const NAV_LINKS = [
   { label: "Developer", href: "/#developer" },
   { label: "Technology", href: "#technology" },
   { label: "About", href: "#about" },
-];
+] as const;
+
+function isActiveLink(pathname: string, currentHash: string, href: string) {
+  if (!href.includes("#")) {
+    return pathname === href;
+  }
+
+  const [targetPath, targetHash] = href.split("#");
+  const normalizedPath = targetPath || "/";
+
+  return pathname === normalizedPath && currentHash === `#${targetHash}`;
+}
 
 export function AuraNavbar() {
   const pathname = usePathname();
@@ -73,21 +84,7 @@ export function AuraNavbar() {
       <ul className="relative z-10 hidden md:flex gap-10 items-center">
         {NAV_LINKS.map((link) => (
           <li key={link.label}>
-            {/*
-              Support both hash-only links (#vision) and path+hash links (/#developer)
-              so active state stays correct on the one-page home layout.
-            */}
-            <NavLink
-              href={link.href}
-              active={(() => {
-                if (link.href.includes("#")) {
-                  const [targetPath, targetHash] = link.href.split("#");
-                  const normalizedPath = targetPath || "/";
-                  return pathname === normalizedPath && currentHash === `#${targetHash}`;
-                }
-                return pathname === link.href;
-              })()}
-            >
+            <NavLink href={link.href} active={isActiveLink(pathname, currentHash, link.href)}>
               {link.label}
             </NavLink>
           </li>
@@ -119,13 +116,15 @@ function NavLink({
   return (
     <a
       href={href}
-      className={`relative text-sm font-medium tracking-wide transition-colors duration-200 group ${active ? "text-[#36d1ff] opacity-100" : "text-white/50 hover:text-white"
-        }`}
+      className={`relative text-sm font-medium tracking-wide transition-colors duration-200 group ${
+        active ? "text-[#36d1ff] opacity-100" : "text-white/50 hover:text-white"
+      }`}
     >
       {children}
       <span
-        className={`absolute -bottom-1 left-0 h-px bg-[#36d1ff] transition-all duration-300 ease-out ${active ? "w-full" : "w-0 group-hover:w-full"
-          }`}
+        className={`absolute -bottom-1 left-0 h-px bg-[#36d1ff] transition-all duration-300 ease-out ${
+          active ? "w-full" : "w-0 group-hover:w-full"
+        }`}
       />
       {active ? (
         <span className="absolute -bottom-2.5 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-[#36d1ff] shadow-[0_0_8px_#36d1ff]" />

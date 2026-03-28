@@ -13,9 +13,9 @@ const LOGOS = [
   { src: "/image src/Logo_8.png", alt: "Logo 8" },
 ] as const;
 
-export function LogoTicker() {
-  const tickerLogos = [...LOGOS, ...LOGOS];
+const TICKER_LOGOS = [...LOGOS, ...LOGOS];
 
+export function LogoTicker() {
   return (
     <section className="relative z-10">
       <div
@@ -27,7 +27,7 @@ export function LogoTicker() {
           animate={{ x: ["0%", "-50%"] }}
           transition={{ duration: 50, ease: "linear", repeat: Infinity, repeatType: "loop" }}
         >
-          {tickerLogos.map((logo, index) => (
+          {TICKER_LOGOS.map((logo, index) => (
             <div
               key={`${logo.src}-${index}`}
               className="group flex shrink-0 items-center justify-center"

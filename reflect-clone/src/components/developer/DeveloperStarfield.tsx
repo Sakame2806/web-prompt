@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 
 function generateStars(count: number) {
-  let shadow = [];
+  const shadow: string[] = [];
   for (let i = 0; i < count; i++) {
     const x = Math.floor(Math.random() * 2000);
     const y = Math.floor(Math.random() * 2000);
@@ -15,12 +15,7 @@ function generateStars(count: number) {
 }
 
 export function DeveloperStarfield() {
-  const [stars, setStars] = useState("");
-
-  useEffect(() => {
-    // Generate star shadow string only on the client
-    setStars(generateStars(200));
-  }, []);
+  const stars = useMemo(() => generateStars(200), []);
 
   return (
     <div aria-hidden className="absolute inset-0 z-0 pointer-events-none overflow-hidden">

@@ -7,6 +7,8 @@ import { AuraShowcase } from "@/components/home/AuraShowcase";
 import { VisionShowcase } from "@/components/home/VisionShowcase";
 import TeamSection from "@/components/developer/TeamSection";
 
+const FOOTER_LINKS = ["Privacy", "Terms", "Contact"] as const;
+
 export default function Home() {
   return (
     <main
@@ -34,22 +36,20 @@ export default function Home() {
         <AuraShowcase />
       </div>
 
-
-
       <section id="about" className="relative z-10 py-20 bg-[#050505]" />
 
-      {/* ── Logo Ticker (Bottom Transition) ── */}
       <section className="relative z-10 border-t border-white/5 bg-[#050505] py-12">
         <LogoTicker />
       </section>
 
-      {/* ── Footer ── */}
       <footer className="relative z-10 border-t border-white/[0.06] py-8 px-8 flex flex-col md:flex-row items-center justify-between text-white/20 text-xs tracking-wide">
         <span>© 2026 Aura V. All rights reserved.</span>
         <span className="flex gap-6 mt-4 md:mt-0">
-          <a href="#" className="hover:text-white/50 transition-colors">Privacy</a>
-          <a href="#" className="hover:text-white/50 transition-colors">Terms</a>
-          <a href="#" className="hover:text-white/50 transition-colors">Contact</a>
+          {FOOTER_LINKS.map((label) => (
+            <a key={label} href="#" className="hover:text-white/50 transition-colors">
+              {label}
+            </a>
+          ))}
         </span>
       </footer>
     </main>
