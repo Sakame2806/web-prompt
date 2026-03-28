@@ -15,9 +15,10 @@ const SCENES = [
       "AuraVision is an AI-powered assistive system designed to grant real-time environmental awareness to those with visual impairments.",
     quote:
       '"Welcome. I am Alice, your vision companion. I will guide you through your environment safely and intuitively."',
-    image: "/hero-src/hero.png",
+    image: "/Cinematic-introduction/hero.png",
     imageAlt: "Vision Hero",
     imageLeft: false,
+    finalScene: false,
   },
   {
     id: "scene-2",
@@ -26,9 +27,10 @@ const SCENES = [
     description:
       "Powered by YOLOv26, our system detects hazards, objects, and people in milliseconds, mapping their exact location relative to you.",
     quote: '"Object detected: Chair. Position: Two meters ahead, slightly to your left."',
-    image: "/hero-src/detection.png",
+    image: "/Cinematic-introduction/detection.png",
     imageAlt: "Spatial Detection",
     imageLeft: true,
+    finalScene: false,
   },
   {
     id: "scene-3",
@@ -38,9 +40,10 @@ const SCENES = [
       "Using Google Gemini, Alice does not just list objects. She understands context and provides natural-language guidance for safe navigation.",
     quote:
       '"There is a small step up ahead. Please adjust your path to the right to maintain a clear trajectory."',
-    image: "/hero-src/alice.png",
+    image: "/Cinematic-introduction/alice.png",
     imageAlt: "Alice Interaction",
     imageLeft: false,
+    finalScene: false,
   },
   {
     id: "scene-4",
@@ -50,9 +53,10 @@ const SCENES = [
       "Integrated RAG with ChromaDB allows Alice to remember what she saw. Ask about past observations and get instant answers.",
     quote:
       '"User: Alice, where did I see my keys? Alice: You left them on the wooden desk in the living room at 10:15 AM."',
-    image: "/hero-src/memory.png",
+    image: "/Cinematic-introduction/memory.png",
     imageAlt: "Visual Memory",
     imageLeft: true,
+    finalScene: false,
   },
   {
     id: "scene-5",
@@ -60,7 +64,7 @@ const SCENES = [
     title: "The Future of\nIndependence",
     description: "Redefining accessibility through the power of agentic AI and computer vision.",
     quote: '"The world is yours to explore. I will be here to show you the way."',
-    image: "/hero-src/hero.png",
+    image: "/Cinematic-introduction/hero.png",
     imageAlt: "AuraVision Finale",
     imageLeft: false,
     finalScene: true,
@@ -71,9 +75,8 @@ export function VisionShowcase() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    if (currentIndex >= SCENES.length - 1) return;
     const timer = window.setTimeout(() => {
-      setCurrentIndex((prev) => Math.min(prev + 1, SCENES.length - 1));
+      setCurrentIndex((prev) => (prev + 1) % SCENES.length);
     }, SCENE_DURATION_MS);
     return () => window.clearTimeout(timer);
   }, [currentIndex]);

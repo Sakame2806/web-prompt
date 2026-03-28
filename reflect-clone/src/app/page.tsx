@@ -4,7 +4,6 @@ import { SystemBrief } from "@/components/home/SystemBrief";
 import { LogoTicker } from "@/components/home/LogoTicker";
 import { MeetAlice } from "@/components/home/MeetAlice";
 import { AuraShowcase } from "@/components/home/AuraShowcase";
-import { FeatureBento } from "@/components/home/FeatureBento";
 import { VisionShowcase } from "@/components/home/VisionShowcase";
 import TeamSection from "@/components/developer/TeamSection";
 
@@ -35,9 +34,7 @@ export default function Home() {
         <AuraShowcase />
       </div>
 
-      <div className="relative z-10">
-        <FeatureBento />
-      </div>
+
 
       <section id="about" className="relative z-10 py-20 bg-[#050505]" />
 

@@ -1,8 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
-import { BlueYardLoader } from "@/components/app-ui/BlueYardLoader";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -20,22 +18,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [showLoader, setShowLoader] = useState(false);
-
-  useEffect(() => {
-    const hasVisited = sessionStorage.getItem("aura-visited") === "true";
-    const rafId = requestAnimationFrame(() => {
-      setShowLoader(!hasVisited);
-    });
-    return () => cancelAnimationFrame(rafId);
-  }, []);
 
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {showLoader && (
-          <BlueYardLoader onComplete={() => setShowLoader(false)} />
-        )}
         {children}
       </body>
     </html>
